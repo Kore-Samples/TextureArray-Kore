@@ -1,4 +1,4 @@
-let project = new Project('TextureTest', __dirname);
+let project = new Project('TextureArray', __dirname);
 
 project.addFile('Sources/**');
 project.setDebugDir('Deployment');

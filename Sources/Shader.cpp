@@ -4,6 +4,7 @@
 #include <Kore/Graphics4/Graphics.h>
 #include <Kore/Graphics4/PipelineState.h>
 #include <Kore/Graphics4/Shader.h>
+#include <Kore/Graphics4/TextureArray.h>
 #include <Kore/System.h>
 
 #include <limits>
@@ -16,7 +17,7 @@ namespace {
 	Graphics4::PipelineState* pipeline;
 	Graphics4::VertexBuffer* vertices;
 	Graphics4::IndexBuffer* indices;
-	Graphics4::Texture* texture;
+	Graphics4::TextureArray* texture;
 	Graphics4::TextureUnit texunit;
 	Graphics4::ConstantLocation offset;
 
@@ -28,7 +29,7 @@ namespace {
 		Graphics4::setMatrix(offset, mat3::RotationZ((float)Kore::System::time()));
 		Graphics4::setVertexBuffer(*vertices);
 		Graphics4::setIndexBuffer(*indices);
-		Graphics4::setTexture(texunit, texture);
+		Graphics4::setTextureArray(texunit, texture);
 		Graphics4::drawIndexedVertices();
 
 		Graphics4::end();
@@ -40,7 +41,10 @@ int kore(int argc, char** argv) {
 	System::init("TextureTest", 1024, 768);
 	System::setCallback(update);
 
-	texture = new Graphics4::Texture("parrot.png");
+	Graphics4::Texture* parrot1 = new Graphics4::Texture("parrot.png", true);
+	Graphics4::Texture* parrot2 = new Graphics4::Texture("parrot2.png", true);
+	Graphics4::Image* textures[] = { parrot1, parrot2 };
+	texture = new Graphics4::TextureArray(textures, 2);
 
 	FileReader vs("texture.vert");
 	FileReader fs("texture.frag");

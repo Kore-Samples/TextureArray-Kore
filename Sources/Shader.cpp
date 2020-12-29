@@ -37,7 +37,7 @@ namespace {
 	}
 }
 
-int kore(int argc, char** argv) {
+int kickstart(int argc, char** argv) {
 	System::init("TextureTest", 1024, 768);
 	System::setCallback(update);
 
@@ -62,14 +62,14 @@ int kore(int argc, char** argv) {
 
 	texunit = pipeline->getTextureUnit("texsampler");
 	offset = pipeline->getConstantLocation("mvp");
-	
+
 	vertices = new Graphics4::VertexBuffer(3, structure);
 	float* v = vertices->lock();
-	v[ 0] = -1.0f; v[ 1] = -1.0f; v[ 2] = 0.5f; v[ 3] = 0.0f; v[ 4] = 1.0f;
-	v[ 5] =  1.0f; v[ 6] = -1.0f; v[ 7] = 0.5f; v[ 8] = 1.0f; v[ 9] = 1.0f;
-	v[10] = -1.0f; v[11] =  1.0f; v[12] = 0.5f; v[13] = 0.0f; v[14] = 0.0f;
+	v[0] = -1.0f; v[1] = -1.0f; v[2] = 0.5f; v[3] = 0.0f; v[4] = 1.0f;
+	v[5] = 1.0f; v[6] = -1.0f; v[7] = 0.5f; v[8] = 1.0f; v[9] = 1.0f;
+	v[10] = -1.0f; v[11] = 1.0f; v[12] = 0.5f; v[13] = 0.0f; v[14] = 0.0f;
 	vertices->unlock();
-	
+
 	indices = new Graphics4::IndexBuffer(3);
 	int* i = indices->lock();
 	i[0] = 0; i[1] = 1; i[2] = 2;
